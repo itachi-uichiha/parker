@@ -11,8 +11,12 @@ import bcrypt from "bcryptjs-react";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
+const saltCount =
+  typeof process.env.NEXT_PUBLIC_SALT_COUNT === "string"
+    ? +process.env.NEXT_PUBLIC_SALT_COUNT
+    : process.env.NEXT_PUBLIC_SALT_COUNT;
 
-const salt = bcrypt.genSaltSync(process.env.NEXT_PUBLIC_SALT_COUNT as any);
+const salt = bcrypt.genSaltSync(saltCount);
 
 const signIn = async (payload: signInTypes) => {
   try {
@@ -24,15 +28,11 @@ const signIn = async (payload: signInTypes) => {
       return { status: 400, message: "Enter a Valid Email ID" };
     } else {
       let status = false;
-      bcrypt.compare(
-        payload.password,
-        auth?.password,
-        function (err, res) {
-          if (res) {
-            status = true;
-          }
+      bcrypt.compare(payload.password, auth?.password, function (err, res) {
+        if (res) {
+          status = true;
         }
-      );
+      });
       if (status) {
         return {
           status: 200,

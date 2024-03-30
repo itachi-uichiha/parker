@@ -1,31 +1,43 @@
+import routes from "@/routes";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Header = () => {
+  const pathName = usePathname();
+  const listYourParking = routes["list-your-parking"];
+  const nearByParking = routes["nearby-parking"];
+  const about = routes["about"];
+  const signUp = routes["signup"];
+
   return (
-    <header className="flex flex-row justify-between px-10 bg-[#75C7FB] overflow-y-hidden">
+    <header className="flex flex-row justify-between px-10 bg-primary overflow-y-hidden">
       <Link href={"/"}>
         <div className="w-[110px] h-[65px] relative">
-          <video
-            src="/assets/images/9.mp4"
-            className="absolute left-0 right-0 bottom-0 !-top-[23px] w-full h-hull object-cover"
-            autoPlay={true}
-            muted
-          ></video>
+          <Image
+            src={"/assets/images/12.png"}
+            alt="logo"
+            className="absolute inset-0 w-full h-hull object-cover"
+            layout="fill"
+          />
         </div>
       </Link>
-      <ul className="flex gap-x-6 items-center text-white">
-        <Link href={"/near-by-parkings"} className="cursor-pointer">
-          Near by Parkings
-        </Link>
-        <Link href={"/list-your-parking"}> List your Parking</Link>
-        <Link href={"/about"} className="cursor-pointer">
-          About
-        </Link>
-        <Link href={"/auth/sign-up"} className="cursor-pointer">
-          Sign Up
-        </Link>
+      <ul className="flex items-center text-white">
+        <li className={`${nearByParking === pathName ? "active" : ""}`}>
+          <Link href={nearByParking}>Near by Parkings</Link>
+        </li>
+        <li className={`${listYourParking === pathName ? "active" : ""}`}>
+          <Link href={listYourParking}> List your Parking</Link>
+        </li>
+        <li className={`${about === pathName ? "active" : ""}`}>
+          {" "}
+          <Link href={about}>About</Link>
+        </li>
+        <li className={`${signUp === pathName ? "active" : ""}`}>
+          {" "}
+          <Link href={signUp}>Sign Up</Link>
+        </li>
       </ul>
     </header>
   );

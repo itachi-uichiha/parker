@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -25,10 +26,81 @@ body {
     )
     rgb(var(--background-start-rgb));
 
-    color: black;
+  color: black;
+  height: 100%;
+}
+html{
+  height: 100%;
+}
+header ul li.active {
+  @apply bg-secondary
+}
+header ul li {
+  @apply flex justify-center h-full hover:bg-secondary px-4;
 }
 
 header ul li,
-header ul a{
- @apply cursor-pointer hover:underline hover:underline-offset-1 text-sm
+header ul a {
+  @apply cursor-pointer text-sm m-auto font-semibold;
+}
+
+input, select{
+  @apply border-[1px] !border-[#ccc] rounded-[4px] min-h-[2rem] focus:outline-secondary transition-all px-3 w-full !bg-transparent
+}
+input[type="checkbox"],input[type="radio"] {
+  @apply min-h-[unset]
+}
+.custom-border-dashed {
+  background: linear-gradient(to right, #000 50%, transparent 0%) top repeat-x,
+    linear-gradient(#000 50%, transparent 0%) right repeat-y,
+    linear-gradient(to right, #000 50%, transparent 0%) bottom repeat-x,
+    linear-gradient(#000 50%, transparent 0%) left repeat-y;
+  background-size: 15px 1px, 1px 15px;
+}
+
+.custom-border-dashed.file-accepted {
+  background: linear-gradient(to right, #4bb543 50%, transparent 0%) top
+      repeat-x,
+    linear-gradient(#4bb543 50%, transparent 0%) right repeat-y,
+    linear-gradient(to right, #4bb543 50%, transparent 0%) bottom repeat-x,
+    linear-gradient(#4bb543 50%, transparent 0%) left repeat-y;
+  background-size: 15px 1px, 1px 15px;
+}
+.custom-border-dashed.file-denined {
+  background: linear-gradient(to right, #ff0000 50%, transparent 0%) top
+      repeat-x,
+    linear-gradient(#ff0000 50%, transparent 0%) right repeat-y,
+    linear-gradient(to right, #ff0000 50%, transparent 0%) bottom repeat-x,
+    linear-gradient(#ff0000 50%, transparent 0%) left repeat-y;
+  background-size: 15px 1px, 1px 15px;
+}
+.bg-map-image{
+  background-image: url(/assets/images/14.png);
+  width: 100%;
+  height: 100%;
+  background-position: left;
+  background-size: cover;
+}
+.bg-map-image h1{
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 4em;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+  width: 500px;
+}
+.input-group{
+ @apply w-full flex flex-row grid grid-cols-12
+}
+.input-group > label{
+  @apply col-span-4
+}
+.input-group > div{
+  @apply col-span-8
 }

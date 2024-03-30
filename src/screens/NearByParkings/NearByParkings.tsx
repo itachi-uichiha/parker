@@ -1,10 +1,12 @@
+import { CustomMap } from "@/components";
 import Image from "next/image";
 import React from "react";
 
 const NearByParkings = () => {
   return (
-    <div>
-      <div className="h-full w-full relative">Near By Parking</div>
+    <div className="w-full">
+      <h4 className="font-poppins font-semibold">Choose your City</h4>
+      {/* <CustomMap /> */}
     </div>
   );
 };

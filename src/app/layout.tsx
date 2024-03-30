@@ -1,8 +1,8 @@
 "use client";
 import { AppLayout } from "@/layout";
-import { inter, lora, queryClient, sourceCodePro400 } from "@/services";
-import { QueryClientProvider } from "react-query";
+import { montserrat, poppins } from "@/services";
 import "./globals.css";
+import { Providers } from "@/layout/Providers";
 
 export default function RootLayout({
   children,
@@ -11,10 +11,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={sourceCodePro400.className}>
-        <QueryClientProvider client={queryClient}>
-          <AppLayout>{children}</AppLayout>
-        </QueryClientProvider>
+      <body className={`${montserrat.className} ${poppins.variable}`}>
+        <Providers>
+          <AppLayout>{children} </AppLayout>
+        </Providers>
       </body>
     </html>
   );
