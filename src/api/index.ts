@@ -24,16 +24,11 @@ const signIn = async (payload: signInTypes) => {
       .from("auth")
       .select("*")
       .eq("email", payload.email)) as any;
-    if (auth?.length > 0) {
+    if (auth?.length === 0) {
       return { status: 400, message: "Enter a Valid Email ID" };
     } else {
-      let status = false;
-      bcrypt.compare(payload.password, auth?.password, function (err, res) {
-        if (res) {
-          status = true;
-        }
-      });
-      if (status) {
+      const res = bcrypt.compareSync(payload.password, auth[0]?.password);
+      if (res) {
         return {
           status: 200,
           message: "Successfully logged In!",

@@ -6,10 +6,10 @@ import React from "react";
 
 const Header = () => {
   const pathName = usePathname();
-  const listYourParking = routes["list-your-parking"];
-  const nearByParking = routes["nearby-parking"];
-  const about = routes["about"];
-  const signUp = routes["signup"];
+  // const listYourParking = routes["list-your-parking"];
+  // const nearByParking = routes["nearby-parking"];
+  // const about = routes["about"];
+  // const signUp = routes["signup"];
 
   return (
     <header className="flex flex-row justify-between px-10 bg-primary overflow-y-hidden">
@@ -24,19 +24,19 @@ const Header = () => {
         </div>
       </Link>
       <ul className="flex items-center text-white">
-        <li className={`${nearByParking === pathName ? "active" : ""}`}>
-          <Link href={nearByParking}>Near by Parkings</Link>
+        <li className={`${pathName === routes.myParking ? "active" : ""}`}>
+          <Link href={'/parkings'}>Near by Parkings</Link>
         </li>
-        <li className={`${listYourParking === pathName ? "active" : ""}`}>
-          <Link href={listYourParking}> List your Parking</Link>
+        <li className={`${pathName === routes.myParking ? "active" : ""}`}>
+          <Link href={'/my-parkings'}> List your Parking</Link>
         </li>
-        <li className={`${about === pathName ? "active" : ""}`}>
+        <li className={`${pathName === routes.about ? "active" : ""}`}>
           {" "}
-          <Link href={about}>About</Link>
+          <Link href={'/about'}>About</Link>
         </li>
-        <li className={`${signUp === pathName ? "active" : ""}`}>
+        <li className={`${pathName === routes.signup ? "active" : ""}`}>
           {" "}
-          <Link href={signUp}>Sign Up</Link>
+          <Link href={'/signup'}>Sign Up</Link>
         </li>
       </ul>
     </header>

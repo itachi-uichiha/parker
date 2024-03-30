@@ -1,8 +1,9 @@
 const routes = {
-    'list-your-parking': '/list-your-parking',
-    'nearby-parking': '/nearby-parkings',
-    'about': '/about',
-    'signup': '/sign-up',
+    parking: '/parkings',
+    myParking: '/my-parkings',
+    about: '/about',
+    signup: '/signup',
+    login: '/login',
 
 }
 export default routes

@@ -1,3 +1,5 @@
+import { Bounce, toast } from "react-toastify";
+
 // Function to fetch user's current location
 type fetchCurrentLocationType = () => google.maps.LatLngLiteral;
 
@@ -24,3 +26,17 @@ export const fetchCurrentLocation = (): Promise<{ lat: number; lng: number }> =>
     }
   });
 };
+
+export const sendNotification = (type:string, message:string) => {
+  toast[type](message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+}

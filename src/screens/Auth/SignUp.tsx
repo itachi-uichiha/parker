@@ -17,13 +17,16 @@ import {
   Link,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { signUp } from "@/api";
 import { useForm, FormProvider } from "react-hook-form";
+import { useState } from "react";
+import { sendNotification } from "@/utils/helpers";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter()
   const methods = useForm({
     defaultValues: {
       first_name: "",
@@ -34,9 +37,14 @@ export default function Signup() {
     },
   });
 
-  const onSubmit = async (data) => {
-    const res = await signUp(data);
-    console.log("🚀 ~ onSubmit ~ res:", res);
+  const onSubmit = async (data: any) => {
+    const res = await signUp(data) as any;
+    if(res?.status === 200){
+      sendNotification('success', res.message);
+      router.push('/');
+    } else {
+      sendNotification('error', res.message);
+    }
   };
   return (
     <Stack w={"100vw"}>
@@ -158,7 +166,7 @@ export default function Signup() {
                   <Stack pt={6}>
                     <Text align={"center"}>
                       Already a user?{" "}
-                      <Link href="/auth/sign-in" color={"blue.400"}>
+                      <Link href="/login" color={"blue.400"}>
                         Login
                       </Link>
                     </Text>
